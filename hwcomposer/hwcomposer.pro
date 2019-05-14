@@ -30,6 +30,11 @@ HEADERS += hwcomposer_backend_v11.h
 
 QT += core-private compositor-private gui-private platformsupport-private dbus
 
+enable-sensors {
+    QT += sensors
+    DEFINES += WITH_SENSORS
+}
+
 DEFINES += QEGL_EXTRA_DEBUG
 CONFIG += egl qpa/genericunixfontdatabase
 
