@@ -48,7 +48,20 @@
 #include <QtCore/QCoreApplication>
 #include <private/qwindow_p.h>
 
+#ifdef WITH_SYSTRACE
 #include <private/qsystrace_p.h>
+#else
+// Add dummy stub methods for QSysTrace
+namespace QSystrace
+{
+    void begin(const char *module, const char *tracepoint, const char *message, ...) {}
+    void end(const char *module, const char *tracepoint, const char *message, ...) {}
+    void counter(const char *module, const char *tracepoint, const char *message, ...) {}
+};
+struct QSystraceEvent {
+    QSystraceEvent(const char *module, const char *tracepoint) {}
+};
+#endif
 
 #ifdef HWC_PLUGIN_HAVE_HWCOMPOSER1_API
 
@@ -64,6 +77,7 @@ static qint64 setTime;
 #else
 #define QPA_HWC_TIMING_SAMPLE(variable)
 #endif
+
 
 struct HwcProcs_v11 : public hwc_procs
 {
