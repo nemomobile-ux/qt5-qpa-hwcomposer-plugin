@@ -29,10 +29,9 @@ SOURCES += hwcomposer_backend_v11.cpp
 HEADERS += hwcomposer_backend_v11.h
 
 versionAtLeast(QT_MINOR_VERSION, 8) {
-QT += core-private gui-private egl_support-private waylandcompositor-private dbus sensors fontdatabase_support-private eventdispatcher_support-private theme_support-private
-}
-else {
-QT += core-private compositor-private gui-private platformsupport-private dbus
+    QT += core-private gui-private egl_support-private waylandcompositor-private dbus fontdatabase_support-private eventdispatcher_support-private theme_support-private
+} else {
+    QT += core-private compositor-private gui-private platformsupport-private dbus
 }
 
 enable-sensors {

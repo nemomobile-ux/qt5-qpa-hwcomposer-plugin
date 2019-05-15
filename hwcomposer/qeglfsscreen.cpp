@@ -61,10 +61,10 @@ QT_BEGIN_NAMESPACE
 QEglFSScreen::QEglFSScreen(HwComposerContext *hwc, EGLDisplay dpy)
     : m_hwc(hwc)
     , m_dpy(dpy)
-    #ifdef WITH_SENSORS
+#ifdef WITH_SENSORS
     , m_screenOrientation(Qt::PrimaryOrientation)
     , m_orientationSensor(new QOrientationSensor(this))
-    #endif
+#endif
 {
 #ifdef QEGL_EXTRA_DEBUG
     qWarning("QEglScreen %p\n", this);
@@ -73,12 +73,12 @@ QEglFSScreen::QEglFSScreen(HwComposerContext *hwc, EGLDisplay dpy)
 
 QEglFSScreen::~QEglFSScreen()
 {
-    #ifdef WITH_SENSORS
+#ifdef WITH_SENSORS
     if(m_orientationSensor) {
         m_orientationSensor->stop();
         delete m_orientationSensor; m_orientationSensor = NULL;
     }
-    #endif
+#endif
 }
 
 #ifdef WITH_SENSORS
