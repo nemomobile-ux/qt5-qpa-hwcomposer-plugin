@@ -1,6 +1,6 @@
 Name:       qt5-qpa-hwcomposer-plugin
 Summary:    Qt 5 QPA hwcomposer plugin
-Version:    5.6.2.1
+Version:    5.12.0
 # The following two lines can be removed after next stop release.
 Provides:   qt5-qpa-hwcomposer-plugin-sbj >= %{version}
 Obsoletes:  qt5-qpa-hwcomposer-plugin-sbj < %{version}
@@ -12,7 +12,7 @@ Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  qt5-qtplatformsupport-devel >= 5.6.0
+BuildRequires:  pkgconfig(Qt5Sensors)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(glesv2)
 BuildRequires:  pkgconfig(wayland-egl)

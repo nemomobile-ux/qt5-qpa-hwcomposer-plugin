@@ -27,7 +27,7 @@ HEADERS += hwcomposer_backend_v10.h
 SOURCES += hwcomposer_backend_v11.cpp
 HEADERS += hwcomposer_backend_v11.h
 
-QT += core-private compositor-private gui-private platformsupport-private dbus
+QT += core-private waylandcompositor-private gui-private egl_support-private fontdatabase_support-private theme_support-private eventdispatcher_support-private sensors dbus
 
 DEFINES += QEGL_EXTRA_DEBUG
 CONFIG += egl qpa/genericunixfontdatabase
@@ -38,7 +38,7 @@ CONFIG += link_pkgconfig
 PKGCONFIG_PRIVATE += libudev glib-2.0 mtdev
 
 # libhybris / droid integration
-PKGCONFIG += android-headers libhardware hybris-egl-platform
+PKGCONFIG += android-headers libhardware hybris-egl-platform fontconfig
 
 packagesExist(hwcomposer-egl) {
     # hwcomposer-egl is shipped in recent versions of libhybris libEGL-devel
@@ -72,3 +72,6 @@ HEADERS +=  $$PWD/qeglfsintegration.h \
             $$PWD/qeglfscontext.h
 
 QMAKE_LFLAGS += $$QMAKE_LFLAGS_NOUNDEF
+
+
+DISTFILES = ../rpm/qt5-qpa-hwcomposer-plugin.spec

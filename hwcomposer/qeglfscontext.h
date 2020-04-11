@@ -42,8 +42,8 @@
 #ifndef QEGLFSCONTEXT_H
 #define QEGLFSCONTEXT_H
 
-#include <QtPlatformSupport/private/qeglconvenience_p.h>
-#include <QtPlatformSupport/private/qeglplatformcontext_p.h>
+#include <QtEglSupport/private/qeglconvenience_p.h>
+#include <QtEglSupport/private/qeglplatformcontext_p.h>
 
 #include "hwcomposer_context.h"
 

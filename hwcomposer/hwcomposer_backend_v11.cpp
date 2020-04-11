@@ -48,8 +48,6 @@
 #include <QtCore/QCoreApplication>
 #include <private/qwindow_p.h>
 
-#include <private/qsystrace_p.h>
-
 #ifdef HWC_PLUGIN_HAVE_HWCOMPOSER1_API
 
 // #define QPA_HWC_TIMING
@@ -72,13 +70,6 @@ struct HwcProcs_v11 : public hwc_procs
 
 static void hwc11_callback_vsync(const struct hwc_procs *procs, int, int64_t)
 {
-    static int counter = 0;
-    ++counter;
-    if (counter % 2)
-        QSystrace::begin("graphics", "QPA::vsync", "");
-    else
-        QSystrace::end("graphics", "QPA::vsync", "");
-
     QCoreApplication::postEvent(static_cast<const HwcProcs_v11 *>(procs)->backend, new QEvent(QEvent::User));
 }
 
@@ -128,8 +119,6 @@ HWComposer::HWComposer(unsigned int width, unsigned int height, unsigned int for
 
 void HWComposer::present(HWComposerNativeWindowBuffer *buffer)
 {
-    QSystraceEvent trace("graphics", "QPA::present");
-
     QPA_HWC_TIMING_SAMPLE(presentTime);
 
     fblayer->handle = buffer->handle;
@@ -160,10 +149,8 @@ void HWComposer::present(HWComposerNativeWindowBuffer *buffer)
 
     QPA_HWC_TIMING_SAMPLE(prepareTime);
 
-    QSystrace::begin("graphics", "QPA::set", "");
     err = hwcdevice->set(hwcdevice, num_displays, mlist);
     HWC_PLUGIN_EXPECT_ZERO(err);
-    QSystrace::end("graphics", "QPA::set", "");
 
     QPA_HWC_TIMING_SAMPLE(setTime);
 
@@ -498,11 +485,10 @@ bool HwComposerBackend_v11::event(QEvent *e)
 
 void HwComposerBackend_v11::handleVSyncEvent()
 {
-    QSystraceEvent trace("graphics", "QPA::handleVsync");
     QSet<QWindow *> pendingWindows = m_pendingUpdate;
     m_pendingUpdate.clear();
     foreach (QWindow *w, pendingWindows) {
-        QWindowPrivate *wp = (QWindowPrivate *) QWindowPrivate::get(w);
+        QPlatformWindow *wp = (QPlatformWindow *) qt_window_private(w);
         wp->deliverUpdateRequest();
     }
 }
