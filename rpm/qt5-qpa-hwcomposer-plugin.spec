@@ -38,7 +38,7 @@ hwcomposer for composing content onto the screen.
 
 %build
 export QTDIR=/usr/share/qt5
-%qmake5 CONFIG+=enable-systrace
+%qmake5
 %make_build
 
 %install
