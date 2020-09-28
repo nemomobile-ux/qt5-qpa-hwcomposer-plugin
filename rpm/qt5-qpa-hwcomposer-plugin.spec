@@ -8,7 +8,9 @@ Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  qt5-qtplatformsupport-devel >= 5.6.0
+# Part of qt5-base-private
+#BuildRequires:  qt5-qtplatformsupport-devel >= 5.6.0
+BuildRequires:  qt5-qtbase-private-devel
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(glesv2)
 BuildRequires:  pkgconfig(wayland-egl)
@@ -20,7 +22,7 @@ BuildRequires:  pkgconfig(libsync)
 %endif
 BuildRequires:  pkgconfig(hybris-egl-platform)
 BuildRequires:  pkgconfig(android-headers)
-BuildRequires:  qt5-qtwayland-wayland_egl-devel
+BuildRequires:  pkgconfig(Qt5WaylandCompositor)
 BuildRequires:  wayland-devel
 BuildRequires:  pkgconfig(udev)
 BuildRequires:  pkgconfig(glib-2.0)
