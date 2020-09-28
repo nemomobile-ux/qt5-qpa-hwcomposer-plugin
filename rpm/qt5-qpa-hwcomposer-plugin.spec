@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(android-headers)
 BuildRequires:  pkgconfig(Qt5WaylandCompositor)
 BuildRequires:  wayland-devel
 BuildRequires:  pkgconfig(udev)
+BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(mtdev)
 
