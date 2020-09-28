@@ -28,6 +28,7 @@ BuildRequires:  pkgconfig(udev)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(mtdev)
+BuildRequires:  qt5-qtbase-static
 
 %description
 This package contains a Qt 5 QPA plugin using libhybris' Droid
