@@ -116,14 +116,20 @@ QEglFSIntegration::QEglFSIntegration()
     }
 
     mScreen = new QEglFSScreen(mHwc, mDisplay);
+#if QT_VERSION > QT_VERSION_CHECK(5, 12, 0)
+    QWindowSystemInterface::handleScreenAdded(mScreen);
+#else
     screenAdded(mScreen);
+#endif
 
     mInputContext = QPlatformInputContextFactory::create();
 }
 
 QEglFSIntegration::~QEglFSIntegration()
 {
-#if QT_VERSION >= 0x050500
+#if QT_VERSION > QT_VERSION_CHECK(5, 12, 0)
+    QWindowSystemInterface::handleScreenRemoved(mScreen);
+#elif QT_VERSION >= 0x050500
     destroyScreen(mScreen);
 #else
     delete mScreen;
