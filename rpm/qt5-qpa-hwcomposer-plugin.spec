@@ -28,6 +28,9 @@ BuildRequires:  pkgconfig(udev)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(mtdev)
+# On Fedora with X11 Qt support
+BuildRequires:  pkgconfig(x11-xcb)
+BuildRequires:  pkgconfig(xext)
 BuildRequires:  qt5-qtbase-static
 
 %description
