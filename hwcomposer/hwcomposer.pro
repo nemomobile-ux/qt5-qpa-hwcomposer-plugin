@@ -28,7 +28,6 @@ SOURCES += hwcomposer_backend_v11.cpp
 HEADERS += hwcomposer_backend_v11.h
 
 QT += core-private waylandcompositor-private gui-private egl_support-private fontdatabase_support-private theme_support-private eventdispatcher_support-private sensors dbus
-
 DEFINES += QEGL_EXTRA_DEBUG
 CONFIG += egl qpa/genericunixfontdatabase
 
@@ -58,6 +57,7 @@ exists(/usr/lib/droid-devel/droid-headers/hardware/hwcomposer2.h) {
 
 # Avoid X11 header collision
 DEFINES += MESA_EGL_NO_X11_HEADERS
+DEFINES += EGL_NO_X11
 
 SOURCES +=  $$PWD/qeglfsintegration.cpp \
             $$PWD/qeglfswindow.cpp \
@@ -73,5 +73,6 @@ HEADERS +=  $$PWD/qeglfsintegration.h \
 
 QMAKE_LFLAGS += $$QMAKE_LFLAGS_NOUNDEF
 
+LIBS +=-lGLESv2
 
 DISTFILES = ../rpm/qt5-qpa-hwcomposer-plugin.spec

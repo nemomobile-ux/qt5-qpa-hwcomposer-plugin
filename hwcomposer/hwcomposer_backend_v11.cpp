@@ -488,8 +488,16 @@ void HwComposerBackend_v11::handleVSyncEvent()
     QSet<QWindow *> pendingWindows = m_pendingUpdate;
     m_pendingUpdate.clear();
     foreach (QWindow *w, pendingWindows) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 12, 0))
+        QPlatformWindow *platformWindow = w->handle();
+        if (!platformWindow)
+            continue;
+
+        platformWindow->deliverUpdateRequest();
+#else
         QPlatformWindow *wp = (QPlatformWindow *) qt_window_private(w);
         wp->deliverUpdateRequest();
+#endif
     }
 }
 

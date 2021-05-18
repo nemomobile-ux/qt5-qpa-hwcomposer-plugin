@@ -64,7 +64,7 @@ class QEglFSWindow;
 // Evaluate "x", if it isn't NULL, print a warning
 #define HWC_PLUGIN_EXPECT_NULL(x) \
     { void *res; if ((res = (x)) != NULL) \
-        qWarning("QPA-HWC: %s in %s returned %x", (#x), __func__, (unsigned int)res); }
+        qWarning("QPA-HWC: %s in %s returned %x", (#x), __func__, (intptr_t)res); }
 
 // Evaluate "x", if it is NULL, exit with a fatal error
 #define HWC_PLUGIN_FATAL(x) \
@@ -73,7 +73,7 @@ class QEglFSWindow;
 // Evaluate "x", if it is NULL, exit with a fatal error
 #define HWC_PLUGIN_ASSERT_NOT_NULL(x) \
     { void *res; if ((res = (x)) == NULL) \
-        qFatal("QPA-HWC: %s in %s returned %x", (#x), __func__, (unsigned int)res); }
+        qFatal("QPA-HWC: %s in %s returned %x", (#x), __func__, (intptr_t)res); }
 
 // Evaluate "x", if it doesn't return zero, exit with a fatal error
 #define HWC_PLUGIN_ASSERT_ZERO(x) \
